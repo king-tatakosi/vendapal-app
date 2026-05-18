@@ -2,7 +2,6 @@ import { DashboardCard } from '../components/DashboardCard';
 import { DebtCard } from '../components/DebtCard';
 import { AlertCard } from '../components/AlertCard';
 import { formatCurrency } from '../utils/format';
-import dollarIcon from '../assets/dollar.svg';
 import alertIcon from '../assets/alert.svg';
 import productsIcon from '../assets/products.svg';
 import cartIcon from '../assets/cart.svg';
@@ -17,9 +16,9 @@ export function Home({ debts, products, supplierDebts, onNavigate }) {
 
   const greeting = () => {
     const h = new Date().getHours();
-    if (h < 12) return 'Good morning ';
-    if (h < 17) return 'Good afternoon ';
-    return 'Good evening ';
+    if (h < 12) return 'Good Morning ';
+    if (h < 17) return 'Good Afternoon ';
+    return 'Good Evening ';
   };
 
   return (
@@ -37,14 +36,12 @@ export function Home({ debts, products, supplierDebts, onNavigate }) {
       <div className="section">
         <div className="dash-grid">
           <DashboardCard
-            icon={dollarIcon}
             label="Total Amount Customers Owe Me"
             value={formatCurrency(debts.totalOwed)}
             color="green"
             onClick={() => onNavigate('debts')}
           />
           <DashboardCard
-            icon={dollarIcon}
             label="Total Amount I Owe Suppliers"
             value={formatCurrency(supplierDebts.totalIOwe)}
             color="orange"
@@ -103,7 +100,6 @@ export function Home({ debts, products, supplierDebts, onNavigate }) {
 
       {recentUnpaid.length === 0 && recentAlerts.length === 0 && (
         <div className="home-empty">
-          <div className="home-empty__icon">🎉</div>
           <h2>All clear!</h2>
           <p>No pending debts or alerts right now.</p>
           <div className="home-quick-actions">

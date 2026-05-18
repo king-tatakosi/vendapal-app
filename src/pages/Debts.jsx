@@ -167,8 +167,6 @@ export function Debts({ debts, supplierDebts }) {
             icon={isOweMe ? '🤝' : '📋'}
             title={isOweMe ? 'No debt records yet' : 'Nothing recorded yet'}
             subtitle={isOweMe ? 'Add the first person who owes you money' : 'Add a supplier you owe money to'}
-            action={isOweMe ? '+ Add Debt Record' : '+ Add What I Owe'}
-            onAction={() => setShowAdd(true)}
           />
         )}
       </div>

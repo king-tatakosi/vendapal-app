@@ -121,7 +121,7 @@ export function DebtCard({ debt, onRecordPayment, onMarkPaid, onDelete, onNewDeb
             ) : (
               <div className="debt-card__actions">
                 <button className="btn btn--primary" onClick={() => setShowPayment(true)}>
-                  💰 Record Payment
+                   Record Payment
                 </button>
                 <button className="btn btn--success" onClick={() => onMarkPaid(debt.id)}>
                   ✓ Mark as Paid

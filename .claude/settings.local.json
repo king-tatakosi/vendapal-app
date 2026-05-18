@@ -7,7 +7,10 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(gh auth *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(ls public/apple-touch-icon.png)",
+      "Bash(node -e \"const b=require\\('fs'\\).readFileSync\\('public/apple-touch-icon.png'\\);console.log\\('size:',b.length,'bytes'\\);console.log\\('PNG sig:',b.slice\\(0,8\\).toString\\('hex'\\)\\);\")",
+      "Bash(Test-Path \"c:\\\\Users\\\\DELL LATITUDE 7480\\\\shop-mate\\\\README.md\")"
     ]
   }
 }
