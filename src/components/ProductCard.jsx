@@ -107,6 +107,12 @@ export function ProductCard({ product, onUpdate, onDelete, onEdit }) {
 
         {expanded && (
           <div className="product-card__body">
+            {product.costPrice && (
+              <div className="product-card__detail-row">
+                <span className="detail-label">Cost price</span>
+                <span className="detail-value">{formatCurrency(product.costPrice)}</span>
+              </div>
+            )}
             {product.price && (
               <div className="product-card__detail-row">
                 <span className="detail-label">Selling price</span>

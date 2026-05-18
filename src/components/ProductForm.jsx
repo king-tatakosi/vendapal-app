@@ -9,6 +9,7 @@ export function ProductForm({ onSubmit, onCancel, initialValues = null }) {
     minStock:   initialValues?.minStock != null ? String(initialValues.minStock) : '',
     expiryDate: initialValues?.expiryDate ?? '',
     price:      initialValues?.price != null ? String(initialValues.price) : '',
+    costPrice:  initialValues?.costPrice != null ? String(initialValues.costPrice) : '',
   });
   const [errors, setErrors] = useState({}); 
   const [saving, setSaving] = useState(false);
@@ -38,6 +39,7 @@ export function ProductForm({ onSubmit, onCancel, initialValues = null }) {
         minStock: form.minStock !== '' ? parseInt(form.minStock) : undefined,
         expiryDate: form.expiryDate || null,
         price: form.price !== '' ? parseFloat(form.price) : undefined,
+        costPrice: form.costPrice !== '' ? parseFloat(form.costPrice) : undefined,
       });
     } finally {
       setSaving(false);
@@ -128,6 +130,25 @@ export function ProductForm({ onSubmit, onCancel, initialValues = null }) {
             placeholder="0.00"
             value={form.price}
             onChange={e => set('price', e.target.value)}
+            min="0"
+            step="0.01"
+          />
+        </div>
+      </div>
+
+      <div className="form-field">
+        <label className="form-label">
+          Cost price <span className="optional">(optional)</span>
+        </label>
+        <div className="input-prefix-wrap">
+          <span className="input-prefix">GH₵</span>
+          <input
+            className="form-input form-input--prefixed"
+            type="number"
+            inputMode="decimal"
+            placeholder="0.00"
+            value={form.costPrice}
+            onChange={e => set('costPrice', e.target.value)}
             min="0"
             step="0.01"
           />

@@ -214,7 +214,6 @@
   text-align: center;
 }
 
-.home-empty__icon { font-size: 56px; }
 
 .home-empty h2 {
   font-size: 22px;
@@ -292,6 +291,7 @@
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
+  line-height: 1.4;
   letter-spacing: 0.3px;
 }
 
@@ -339,6 +339,9 @@
 }
 
 .nav-tab--active .nav-tab__icon { transform: scale(1.1); }
+.nav-tab--active .nav-tab__icon img {
+  filter: brightness(0) saturate(100%) invert(39%) sepia(98%) saturate(420%) hue-rotate(103deg) brightness(90%) contrast(90%);
+}
 
 .nav-tab__label {
   font-size: 10px;
