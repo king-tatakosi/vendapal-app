@@ -79,13 +79,18 @@ export function ProductForm({ onSubmit, onCancel, initialValues = null }) {
         </div>
         <div className="form-field form-field--flex">
           <label className="form-label">Unit</label>
-          <input
+          <select
             className="form-input"
-            type="text"
-            placeholder="e.g. bags, bottles"
             value={form.unit}
             onChange={e => set('unit', e.target.value)}
-          />
+          >
+            {['packs','pieces','bags','bottles','cartons','boxes','sachets','litres','kg','dozen','crates','rolls','bundles','tins'].map(u => (
+              <option key={u} value={u}>{u}</option>
+            ))}
+            {!['packs','pieces','bags','bottles','cartons','boxes','sachets','litres','kg','dozen','crates','rolls','bundles','tins'].includes(form.unit) && (
+              <option value={form.unit}>{form.unit}</option>
+            )}
+          </select>
         </div>
       </div>
 

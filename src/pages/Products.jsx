@@ -95,7 +95,8 @@ export function Products({ products, addProduct, updateProduct, deleteProduct })
           <EmptyState
             icon="📦"
             title="No products yet"
-            subtitle="Add the items you sell or stock so you can track them"
+            subtitle="Add the items you sell or stock so you can track them and get expiry alerts two months 
+            before product expires"
             action="+ Add First Product"
             onAction={() => setShowAdd(true)}
           />
