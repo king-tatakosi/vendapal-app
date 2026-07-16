@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { formatCurrency, formatDate, initials } from '../utils/format';
 import { Modal } from './Modal';
+import { getDueStatus, getDueLabel } from "../utils/dueDate";
 
 function PaymentModal({ debt, onClose, onSubmit }) {
   const remaining = debt.amount - (debt.paidAmount || 0);
@@ -50,7 +51,8 @@ export function DebtCard({ debt, onRecordPayment, onMarkPaid, onDelete, onNewDeb
 
   const remaining = Math.max(0, debt.amount - (debt.paidAmount || 0));
   const progress = debt.amount > 0 ? Math.min((debt.paidAmount || 0) / debt.amount, 1) : 0;
-
+  const dueStatus = getDueStatus(debt);
+  const dueLabel = getDueLabel(debt);
   const handlePayment = (amount, note) => {
     onRecordPayment(debt.id, amount, note);
     setShowPayment(false);
@@ -63,6 +65,11 @@ export function DebtCard({ debt, onRecordPayment, onMarkPaid, onDelete, onNewDeb
           <div className="avatar">{initials(debt.name)}</div>
           <div className="debt-card__info">
             <p className="debt-card__name">{debt.name}</p>
+            {dueStatus && (
+  <span className={`due-badge due-badge--${dueStatus}`}>
+    {dueLabel}
+  </span> 
+)}
             <p className="debt-card__meta">{formatDate(debt.createdAt)}</p>
           </div>
           <div className="debt-card__right">

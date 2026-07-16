@@ -10,6 +10,7 @@ export function DebtForm({ onSubmit, onCancel, mode = 'owe-me', initialValues = 
     phone: initialValues?.phone ?? '',
     amount: initialValues?.amount != null ? String(initialValues.amount) : '',
     note: initialValues?.note ?? '',
+    dueDate: initialValues?.dueDate ?? ''
   });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
@@ -55,11 +56,12 @@ export function DebtForm({ onSubmit, onCancel, mode = 'owe-me', initialValues = 
         phone: form.phone.trim() || null,
         amount: parseFloat(form.amount),
         note: form.note.trim() || null,
+        dueDate: form.dueDate || null
       });
     } finally {
       setSaving(false);
     }
-  };
+  };  
 
   return (
     <form onSubmit={handleSubmit} className="form">
@@ -124,7 +126,20 @@ export function DebtForm({ onSubmit, onCancel, mode = 'owe-me', initialValues = 
           autoComplete="tel"
         />
       </div>
-
+        <div className="form-field">
+  <div className="form-label-row">
+    <label className="form-label">
+      Payment due date <span className="optional">(optional)</span>
+    </label>
+  </div>
+  <input
+    className="form-input"
+    type="date"
+    value={form.dueDate || ""}
+    onChange={(e) => set("dueDate", e.target.value)}
+    min={new Date().toISOString().split("T")[0]}
+  />
+</div>
       <div className="form-field">
         <label className="form-label">Note <span className="optional">(optional)</span></label>
         <textarea
