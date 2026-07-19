@@ -42,7 +42,7 @@ export function Debts({ debts, supplierDebts }) {
   };
 
   const handleNewDebt = debt => {
-    setPrefill({ name: debt.name, phone: debt.phone });
+    setPrefill({ name: debt.name, phone: debt.phone, });
     setShowAdd(true);
   };
 
@@ -193,14 +193,17 @@ export function Debts({ debts, supplierDebts }) {
       {editingDebt && (
         <Modal title="Edit Record" onClose={() => setEditingDebt(null)}>
           <DebtForm
+            key={editingDebt.id}
             mode={tab}
             onSubmit={handleUpdate}
             onCancel={() => setEditingDebt(null)}
             initialValues={{
+              id: editingDebt.id,
               name: editingDebt.name,
               phone: editingDebt.phone,
               amount: editingDebt.amount,
               note: editingDebt.note,
+              dueDate: editingDebt.dueDate
             }}
           />
         </Modal>
