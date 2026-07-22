@@ -824,6 +824,42 @@
 .total-banner strong { font-size: 18px; font-weight: 800; }
 .total-banner--orange { background: var(--orange-light); color: var(--orange-text); }
 
+.summary-stack {
+  display: grid;
+  gap: 10px;
+  padding: 12px 16px 0;
+}
+
+.summary-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--green-light);
+  border: 1px solid rgba(22, 163, 74, 0.16);
+  color: var(--green-text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.summary-card strong {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--green-text);
+}
+
+.summary-stack--orange .summary-card {
+  background: var(--orange-light);
+  border-color: rgba(245, 124, 0, 0.18);
+  color: var(--orange-text);
+}
+
+.summary-stack--orange .summary-card strong {
+  color: var(--orange-text);
+}
+
 /* ============================
    TOGGLE PAID
    ============================ */

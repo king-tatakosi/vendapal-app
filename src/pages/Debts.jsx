@@ -21,6 +21,7 @@ export function Debts({ debts, supplierDebts }) {
   const source = isOweMe ? debts : supplierDebts;
   const allRecords = source.supplierDebts ?? source.debts;
   const total = source.totalOwed ?? source.totalIOwe;
+  const totalPaid = (allRecords || []).reduce((sum, record) => sum + Math.max(0, record.paidAmount || 0), 0);
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -116,10 +117,16 @@ export function Debts({ debts, supplierDebts }) {
         </button>
       </div>
 
-      {total > 0 && (
-        <div className={`total-banner${!isOweMe ? ' total-banner--orange' : ''}`}>
-          <span>{isOweMe ? 'Total owed to you' : 'Total you owe'}</span>
-          <strong>{formatCurrency(total)}</strong>
+      {(allRecords || []).length > 0 && (
+        <div className={`summary-stack${!isOweMe ? ' summary-stack--orange' : ''}`}>
+          <div className="summary-card">
+            <span>{isOweMe ? 'Still owed to you' : 'Still owing'}</span>
+            <strong>{formatCurrency(total)}</strong>
+          </div>
+           <div className="summary-card">
+            <span>{isOweMe ? 'Total collected' : 'Total paid'}</span>
+            <strong>{formatCurrency(totalPaid)}</strong>
+          </div>
         </div>
       )}
 
