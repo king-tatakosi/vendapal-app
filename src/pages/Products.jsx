@@ -4,7 +4,7 @@ import { SearchBar } from '../components/SearchBar';
 import { EmptyState } from '../components/EmptyState';
 import { Modal } from '../components/Modal';
 import { ProductForm } from '../components/ProductForm';
-import { useToast } from '../context/ToastContext';
+import { useToast } from '../context/toastCtx';
 
 export function Products({ products, addProduct, updateProduct, deleteProduct }) {
   const showToast = useToast();

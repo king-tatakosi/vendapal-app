@@ -1,6 +1,5 @@
-import { createContext, useContext, useState, useCallback, useRef } from 'react';
-
-const ToastCtx = createContext(null);
+import { useState, useCallback, useRef } from 'react';
+import { ToastCtx } from './toastCtx';
 
 export function ToastProvider({ children }) {
   const [toast, setToast] = useState(null);
@@ -33,5 +32,3 @@ export function ToastProvider({ children }) {
     </ToastCtx.Provider>
   );
 }
-
-export const useToast = () => useContext(ToastCtx);

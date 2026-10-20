@@ -5,7 +5,7 @@ import { EmptyState } from '../components/EmptyState';
 import { Modal } from '../components/Modal';
 import { DebtForm } from '../components/DebtForm';
 import { formatCurrency } from '../utils/format';
-import { useToast } from '../context/ToastContext';
+import { useToast } from '../context/toastCtx';
 
 export function Debts({ debts, supplierDebts }) {
   const showToast = useToast();
