@@ -1,0 +1,26 @@
+{
+  "name": "VendaPal",
+  "short_name": "VendaPal",
+  "description": "Track debts, inventory, and expiring products easily",
+  "theme_color": "#16A34A",
+  "background_color": "#F0FDF4",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "./",
+  "scope": "./",
+  "categories": ["business", "finance", "productivity"],
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
