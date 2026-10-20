@@ -26,11 +26,9 @@ function downloadFile(file) {
 }
 
 /**
- * Exports all VendaPal data as a single JSON file.
- * Uses the phone's share sheet when it can share files (so the file can be
- * sent straight to WhatsApp, email, etc.), otherwise downloads it.
+ * Exports all VendaPal data as a single JSON file and downloads it.
  *
- * Resolves to { method: 'share' | 'download' | 'cancelled' | 'empty', total }.
+ * Resolves to { method: 'download' | 'empty', total }.
  */
 export async function exportBackup() {
   const data = await db.exportAll();
@@ -46,16 +44,6 @@ export async function exportBackup() {
   const file = new File([JSON.stringify(backup, null, 2)], backupFilename(), {
     type: 'application/json',
   });
-
-  if (navigator.canShare?.({ files: [file] })) {
-    try {
-      await navigator.share({ files: [file], title: 'VendaPal backup' });
-      return { method: 'share', total };
-    } catch (err) {
-      if (err?.name === 'AbortError') return { method: 'cancelled', total };
-      // Sharing failed for another reason — fall back to a normal download.
-    }
-  }
 
   downloadFile(file);
   return { method: 'download', total };

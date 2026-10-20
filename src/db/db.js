@@ -1,6 +1,6 @@
 const DB_NAME = 'vendapal_db';
 const DB_VERSION = 1;
-const STORES = ['debts', 'products', 'supplier_debts'];
+export const STORES = ['debts', 'products', 'supplier_debts'];
 
 function openDB() {
   return new Promise((resolve, reject) => {
@@ -48,4 +48,32 @@ async function remove(store, id) {
   });
 }
 
-export const db = { getAll, put, remove };
+async function exportAll() {
+  const result = {};
+  for (const store of STORES) {
+    result[store] = await getAll(store);
+  }
+  return result;
+}
+
+// Writes every record in one transaction, so a failure part-way through
+// leaves the existing data untouched. Records are merged by id: existing
+// records with the same id are overwritten, nothing else is deleted.
+async function importAll(data) {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORES, 'readwrite');
+    const counts = {};
+    STORES.forEach(store => {
+      const records = data[store] ?? [];
+      counts[store] = records.length;
+      const objectStore = tx.objectStore(store);
+      records.forEach(record => objectStore.put(record));
+    });
+    tx.oncomplete = () => resolve(counts);
+    tx.onerror = () => reject(tx.error);
+    tx.onabort = () => reject(tx.error);
+  });
+}
+
+export const db = { getAll, put, remove, exportAll, importAll };

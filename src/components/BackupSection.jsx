@@ -13,7 +13,6 @@ export function BackupSection({ onImported }) {
       const { method } = await exportBackup();
       if (method === 'empty') showToast('Nothing to export yet. Add a debt or product first.');
       else if (method === 'download') showToast('Backup saved to your Downloads folder');
-      else if (method === 'share') showToast('Backup shared. Open it on your new phone.');
     } catch {
       showToast('Could not export your data. Please try again.');
     } finally {
@@ -49,7 +48,7 @@ export function BackupSection({ onImported }) {
       <div className="backup-card">
         <h2 className="backup-card__title">Move to a new phone</h2>
         <p className="backup-card__hint">
-          Export your data, send the file to your new phone (WhatsApp works), then tap Import there.
+          Export your data, send the file to your new phone, then tap Import there.
         </p>
         <div className="backup-card__actions">
           <button className="btn btn--outline" onClick={handleExport} disabled={busy !== null}>
