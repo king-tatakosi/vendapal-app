@@ -1,6 +1,7 @@
 import { DashboardCard } from '../components/DashboardCard';
 import { DebtCard } from '../components/DebtCard';
 import { AlertCard } from '../components/AlertCard';
+import { BackupSection } from '../components/BackupSection';
 import { formatCurrency } from '../utils/format';
 import alertIcon from '../assets/alert.svg';
 import productsIcon from '../assets/products.svg';
@@ -13,6 +14,9 @@ export function Home({ debts, products, supplierDebts, onNavigate }) {
     ...products.expiringSoon.map(p => ({ ...p, _type: 'expiring' })),
     ...products.lowStock.map(p => ({ ...p, _type: 'low-stock' })),
   ].slice(0, 4);
+
+  const reloadAll = () =>
+    Promise.all([debts.reload(), products.reload(), supplierDebts.reload()]);
 
   const greeting = () => {
     const h = new Date().getHours();
@@ -112,6 +116,8 @@ export function Home({ debts, products, supplierDebts, onNavigate }) {
           </div>
         </div>
       )}
+
+      <BackupSection onImported={reloadAll} />
     </div>
   );
 }

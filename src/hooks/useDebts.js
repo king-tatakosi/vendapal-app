@@ -71,5 +71,5 @@ export function useDebts() {
   const unpaid = debts.filter(d => !d.paid);
   const totalOwed = unpaid.reduce((s, d) => s + Math.max(0, d.amount - (d.paidAmount || 0)), 0);
 
-  return { debts, unpaid, totalOwed, loading, addDebt, updateDebt, recordPayment, markAsPaid, deleteDebt };
+  return { debts, unpaid, totalOwed, loading, reload: load, addDebt, updateDebt, recordPayment, markAsPaid, deleteDebt };
 }

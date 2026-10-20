@@ -1284,6 +1284,42 @@
 }
 
 /* ============================
+   BACKUP / TRANSFER CARD
+   ============================ */
+.section--backup { padding-bottom: 8px; }
+
+.backup-card {
+  background: var(--card);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.backup-card__title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.backup-card__hint {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.backup-card__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+/* ============================
    UTILITIES
    ============================ */
 .text-danger  { color: var(--red); }

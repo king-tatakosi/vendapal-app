@@ -71,5 +71,5 @@ export function useSupplierDebts() {
   const unpaid = supplierDebts.filter(d => !d.paid);
   const totalIOwe = unpaid.reduce((s, d) => s + Math.max(0, d.amount - (d.paidAmount || 0)), 0);
 
-  return { supplierDebts, unpaid, totalIOwe, loading, addSupplierDebt, updateSupplierDebt, recordPayment, markAsPaid, deleteSupplierDebt };
+  return { supplierDebts, unpaid, totalIOwe, loading, reload: load, addSupplierDebt, updateSupplierDebt, recordPayment, markAsPaid, deleteSupplierDebt };
 }

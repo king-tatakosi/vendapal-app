@@ -59,5 +59,5 @@ export function useProducts() {
     return new Date(p.expiryDate) < today;
   });
 
-  return { products, loading, addProduct, updateProduct, deleteProduct, lowStock, expiringSoon, expired };
+  return { products, loading, reload: load, addProduct, updateProduct, deleteProduct, lowStock, expiringSoon, expired };
 }
